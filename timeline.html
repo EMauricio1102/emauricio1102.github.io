@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timeline — Ernest D. Mauricio</title>
+<meta name="description" content="A timeline of milestones from Ernest D. Mauricio's career and life.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+  <a class="back-link mono-label reveal" href="index.html">&larr; Back to home</a>
+
+  <header class="project-hero reveal">
+    <h1 class="page-title">My Timeline</h1>
+    <p class="mono-label">A few points along the way</p>
+  </header>
+
+  <p class="bio reveal">
+    Every life has a few checkpoints worth remembering. Mine include some hard-earned career wins, a wedding, and one very loud (and wonderful) new arrival. Hover over any point for the date, or click it to read the story behind it.
+  </p>
+
+  <!-- ===== Timeline ===== -->
+  <hr class="rule">
+  <section aria-labelledby="timeline-label" class="reveal">
+    <span class="mono-label" id="timeline-label">Timeline</span>
+
+    <div class="timeline-scroll">
+      <div class="timeline-track" id="timeline-track">
+        <div class="timeline-axis" aria-hidden="true"></div>
+        <!-- markers injected by JS -->
+      </div>
+    </div>
+
+    <div class="timeline-detail" id="timeline-detail">
+      <!-- selected moment injected by JS -->
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Ernest D. Mauricio</span>
+    <a href="index.html">&larr; Back to home</a>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+(function () {
+  // ---- Edit this list to permanently add, remove, or change moments. ----
+  // Date format is 'YYYY-MM'.
+  var TIMELINE_EVENTS = [
+    { date: '1996-11', title: 'A Network Technician was born!',
+     description: 'Born in Los Angeles, CA, with dreams of one day building a career in technology. Born to Ernesto and Rosalinda Mauricio, I grew up with a passion for understanding how things work under the hood. My father taught me the value of hands-on experience while my mother instilled in me the importance of perseverance and problem-solving from an early age.'},
+    { date: '2010-11', title: 'Building my first computer.',
+     description: 'At the tender age of 14, I built my first computer from scratch, learning the intricacies of hardware components and their interactions. This project sparked my interest in technology and laid the foundation for my future career in network administration.'},
+    { date: '2018-08', title: 'Diving into the world of Competative ESports',
+     description: 'I discovered my love for competitive gaming and joined my first ever Overwatch team representing Fresno State University. This experience taught me valuable lessons in teamwork, strategy, and resilience. Competing at a high level required dedication, practice, and the ability to adapt to rapidly changing situations, skills that would later prove invaluable in my professional career.'},
+    { date: '2019-06', title: 'Fresh out of college, with a chip on my shoulder.',
+     description: 'After graduating from California State University, Fresno with a Bachelors degree in Computer Science, I was eager to start my career in technology. I faced the challenges of entering the workforce during a competitive job market, but my determination and passion for technology drove me to seek out opportunities where I could apply my skills and continue learning.'},
+    { date: '2021-04', title: 'First professional role as a Network Technician.',
+     description: 'I began my career as a Network Technician, where I was able to apply my knowledge and skills in a real-world setting. This role allowed me to gain valuable experience in network administration and troubleshooting, while also contributing to the success of the organization.'},
+    { date: '2024-12', title: 'My first major project as a Network Technician.',
+     description: 'I led the implementation of a new network infrastructure that improved overall performance and reliability. This project required extensive planning, coordination with various teams, and hands-on execution to ensure a successful deployment.'},
+    { date: '2025-03', title: 'My Magnum Opus: Asset Management System.',
+     description: 'My first major project utilzing Docker containers to deploy simple yet complex applications. I discovered the power of Snipe-IT, a Docker Container, developed by Grokability. Implementing this project allowed me to streamline asset management processes, improve inventory tracking, and enhance overall efficiency within the organization. It was a significant milestone in my career, showcasing my ability to leverage modern technologies to solve real-world problems.'},
+    { date: '2025-08', title: "Life's Promise of Committment",
+     description: "After 3 long years, I settle down and make life's true promise and marry the woman of my dreams. This moment taught me how to be committed and devoted to my life partner. Truly learning from one another, this moment of life had lead me to become more determined and confident with myself as I traverse through life's toughes hurdles."},
+    { date: '2026-05', title: 'The birth of my son, Elliot',
+     description: 'Welcoming my son, Elliot, into the world was a life-changing experience. Becoming a parent has brought immense joy and responsibility, and it has inspired me to continue growing both personally and professionally. This milestone has reinforced the importance of work-life balance and the value of cherishing every moment with loved ones.'}
+  ];
+
+  var track = document.getElementById('timeline-track');
+  var detail = document.getElementById('timeline-detail');
+  var activeEvent = null;
+
+  function parseDate(str) {
+    var parts = str.split('-');
+    return new Date(parseInt(parts[0], 10), (parseInt(parts[1], 10) || 1) - 1, 1).getTime();
+  }
+
+  function formatLabel(str) {
+    var parts = str.split('-');
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var m = parseInt(parts[1], 10);
+    return (m ? months[m - 1] + ' ' : '') + parts[0];
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function render() {
+    TIMELINE_EVENTS.sort(function (a, b) { return parseDate(a.date) - parseDate(b.date); });
+    if (!activeEvent) activeEvent = TIMELINE_EVENTS[0];
+
+    var times = TIMELINE_EVENTS.map(function (e) { return parseDate(e.date); });
+    var minT = Math.min.apply(null, times);
+    var maxT = Math.max.apply(null, times);
+    var pad = (maxT - minT) * 0.01 || 1;
+    var pMin = minT - pad;
+    var pMax = maxT + pad;
+
+    track.style.minWidth = Math.max(900, TIMELINE_EVENTS.length * 170) + 'px';
+    track.querySelectorAll('.timeline-marker').forEach(function (m) { m.remove(); });
+
+    TIMELINE_EVENTS.forEach(function (evt) {
+      var pct = pMax === pMin ? 50 : ((parseDate(evt.date) - pMin) / (pMax - pMin)) * 100;
+      var isActive = evt === activeEvent;
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'timeline-marker' + (isActive ? ' active' : '');
+      btn.style.left = pct + '%';
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      btn.setAttribute('aria-label', evt.title + ', ' + formatLabel(evt.date));
+
+      var dot = document.createElement('span');
+      dot.className = 'timeline-marker-dot';
+      dot.setAttribute('aria-hidden', 'true');
+
+      var year = document.createElement('span');
+      year.className = 'timeline-marker-year';
+      year.textContent = formatLabel(evt.date);
+
+      btn.appendChild(dot);
+      btn.appendChild(year);
+      btn.addEventListener('click', function () {
+        activeEvent = evt;
+        render();
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      });
+
+      track.appendChild(btn);
+    });
+
+    renderDetail();
+  }
+
+  function renderDetail() {
+    if (!activeEvent) { detail.innerHTML = ''; return; }
+    detail.classList.remove('fade-in');
+    void detail.offsetWidth; // restart animation
+    detail.innerHTML =
+      '<p class="mono-label timeline-detail-date">' + formatLabel(activeEvent.date) + '</p>' +
+      '<p class="timeline-detail-title">' + escapeHtml(activeEvent.title) + '</p>' +
+      '<p class="timeline-detail-desc">' + escapeHtml(activeEvent.description) + '</p>';
+    detail.classList.add('fade-in');
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>

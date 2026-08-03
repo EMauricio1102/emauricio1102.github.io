@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ernest D. Mauricio - Technician &amp; Engineer</title>
+<meta name="description" content="Personal site of Ernest D. Mauricio, technology specialist and engineer.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== Hero ===== -->
+  <header class="hero reveal">
+    <svg class="seal" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Monogram mark for Ernest D. Mauricio">
+      <circle cx="34" cy="34" r="33" fill="var(--plum)"/>
+      <path d="M12 40 C 20 22, 28 22, 34 34 C 40 46, 48 46, 56 28"
+            fill="none" stroke="var(--brass)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="34" cy="16" r="2.3" fill="var(--brass)"/>
+    </svg>
+    <div class="hero-text">
+      <h1>Ernest D. Mauricio</h1>
+      <p class="role mono-label">Technology Specialist · Fresno, CA</p>
+    </div>
+  </header>
+
+  <p class="bio reveal">
+    I help keep the lights on from a technology perspective. Most of my day is spent keeping our systems running smoothly,
+    solving technical issues, and supporting the tools and infrastructure that our team and customers rely on every day.
+    Based in Fresno, usually with a cup of coffee within reach.
+  </p>
+
+  <a class="project-link reveal" href="timeline.html">More About Me</a>
+
+  <!-- ===== Projects ===== -->
+  <hr class="rule">
+  <section aria-labelledby="work-label">
+    <span class="mono-label" id="work-label">Projects</span>
+
+    <div class="project reveal">
+      <div class="project-main">
+        <span class="project-dot" aria-hidden="true"></span>
+        <div>
+          <p class="project-title">Oracle Memory Calculator</p>
+          <p class="project-desc">Oracle Memory Calculator is a lightweight Windows utility that helps DBAs and system administrators
+                                  size Oracle memory configurations by converting available server memory into recommended SGA and PGA
+                                  allocations, complete with ready-to-use Oracle SQL commands.</p>
+        </div>
+      </div>
+      <a class="project-link" href="https://github.com/EMauricio1102/Oracle-Memory-Calculator/tree/main" target="_blank" rel="noopener">View GitHub <span class="arrow">→</span></a>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-main">
+        <span class="project-dot" aria-hidden="true"></span>
+        <div>
+          <p class="project-title">SnipeIT: Inventory Manager</p>
+          <p class="project-desc">Our Inventory Manager, powered by Snipe-IT, provides a centralized platform for tracking and managing
+                                  IT assets throughout their lifecycle, helping maintain accurate inventory records and improving asset
+                                  visibility across the organization. By leveraging Docker container technology, the solution simplifies
+                                  deployment, updates, and maintenance by packaging the application and its dependencies into a consistent,
+                                  portable environment that reduces complexity and improves reliability.</p>
+        </div>
+      </div>
+      <a class="project-link" href="project-asset-inventory.html">view <span class="arrow">→</span></a>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-main">
+        <span class="project-dot" aria-hidden="true"></span>
+        <div>
+          <p class="project-title">PowerChute Network Shutdown</p>
+          <p class="project-desc">UPS management and automated shutdown framework integrated with Hyper-V and VMware to protect critical infrastructure during power events.</p>
+        </div>
+      </div>
+      <a class="project-link" href="project-powerchute.html">view <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <hr class="rule">
+  <section class="contact-wrap" aria-labelledby="contact-label" id="contact">
+    <span class="mono-label" id="contact-label">Get in touch</span>
+
+    <nav class="links-row reveal" aria-label="External profiles">
+      <a href="mailto:hello@example.com">Email</a>
+      <a href="https://github.com/EMauricio1102/" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/example" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+
+    <svg class="watermark" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="34" cy="34" r="33" fill="var(--plum)"/>
+      <path d="M12 40 C 20 22, 28 22, 34 34 C 40 46, 48 46, 56 28"
+            fill="none" stroke="var(--brass)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="34" cy="16" r="2.3" fill="var(--brass)"/>
+    </svg>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Ernest D. Mauricio</span>
+    <span>Built with tender love and care.</span>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
