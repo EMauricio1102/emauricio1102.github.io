@@ -106,8 +106,8 @@ a {
 
 .seal {
   flex: none;
-  width: 68px;
-  height: 68px;
+  width: 100px;
+  height: 70px;
 }
 
 .hero-text h1,
@@ -513,10 +513,10 @@ section > .mono-label {
 .contact-wrap .watermark {
   position: absolute;
   top: -20px;
-  right: -10px;
-  width: 220px;
-  height: 220px;
-  opacity: 0.05;
+  right: -100px;
+  width: 434px;
+  height: 325px;
+  opacity: 0.1;
   pointer-events: none;
   z-index: 0;
 }
